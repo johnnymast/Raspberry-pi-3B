@@ -24,7 +24,7 @@ import time
 
 
 base_dir = '/sys/bus/w1/devices/'
-device_folder = glob.glob(base_dir + '00*')[0]  #this is my example this could be 28 or anything realy
+device_folder = glob.glob(base_dir + '28*')[0]  #this is my example this could be 28 or anything realy
 device_file = device_folder + '/w1_slave'
 
 def read_temp_raw():
@@ -35,13 +35,14 @@ def read_temp_raw():
 
 def read_temp():
     lines = read_temp_raw()
-    while lines[0].strip()[-3:] != 'YES':
-        time.sleep(0.2)
-        lines = read_temp_raw()
-    equals_pos = lines[1].find('t=')
-    if equals_pos != -1:
-        temp_string = lines[1][equals_pos+2:]
-        temp_c = float(temp_string) / 1000.0
-        return temp_c
+    secondline =lines[1]
+    # Splits de regel in "woorden", er wordt gespleten op de spaties
+    # We selecteren hier het 10 "woord" [9] (tellend vanaf 0)
+    temperaturedata = secondline.split(" ")[9]
+    # De eerste 2 karakters zijn "t=", deze moeten we weghalen.
+    # we maken meteen van de string een integer (nummer).
+    temperature = float(temperaturedata[2:])
+    # De temperatuur waarde moeten we delen door 1000 voor de juiste waarde.
+    return temperature / 1000
 
 print read_temp()

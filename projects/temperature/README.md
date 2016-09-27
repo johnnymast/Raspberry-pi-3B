@@ -3,3 +3,10 @@ Add to /boot/config.txt the following line and reboot before starting this sampl
 ```bash
 dtoverlay=w1-gpio
 ```
+
+Add the following lines to /etc/modules and reboot your raspberry
+
+```bash
+w1-gpio pullup=1
+w1-therm
+```
