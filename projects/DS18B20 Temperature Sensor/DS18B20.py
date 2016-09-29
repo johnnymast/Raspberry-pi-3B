@@ -9,7 +9,7 @@ import time
 # sudo modprobe w1-therm
 #
 # Then check /sys/bus/w1/devices/ it has a directory for your device
-# with in it you will find w1_slave. It contains the temperature in celsius
+# with in it you will find w1_slave. It contains the DS18B20 Temperature Sensor in celsius
 # im a european so i don't need to convert it. So we take the raw reading. If need to translate the
 # celsius into fahrenheit there is the calculation
 #
@@ -19,7 +19,7 @@ import time
 #
 # But in my example i will show you the output in celsius.
 #
-# Credit for reading the temperature goes to youtube user RaspberryPiIVBeginners
+# Credit for reading the DS18B20 Temperature Sensor goes to youtube user RaspberryPiIVBeginners
 # here is his link https://www.youtube.com/channel/UCRAvo5cQWyfog8nRzlf_jWg
 
 
